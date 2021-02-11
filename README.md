@@ -2,7 +2,7 @@
 
 Further integrate your fully featured Visualforce storefront with an Experience Builder site, and deliver a smooth transitional experience for your buyers across your solution.
 
-This steps through deploying the Header components using SFDX.
+This guide steps through deploying the Header components using SFDX.
 
 ## Prerequisites
 
