@@ -1,0 +1,16 @@
+<template>
+    <ul class="list-inline navbar-nav cc_navbar_nav">
+        <li>
+            <a class="changeLocale cc_change_locale" onclick={toggleLangSelectModal}>
+                <i class="fa fa-globe" aria-hidden="true"></i>
+                <span class="cc_locale_label">{pageLabelValues.languageSelectorLabel}</span>
+                <span class="cc_current_locale">{currentLanguage}</span>
+            </a>
+            <template if:true={isModalOpen}>
+                <!-- Modal language picker component. The locale data is fetched by this component
+                        (b2b_LanguageSelector) and injected into the picker with the localesData variable -->
+                <c-b2b_-language-selector-modal locales-data={localesData} page-label-values={pageLabelValues}></c-b2b_-language-selector-modal>
+            </template>
+        </li>
+    </ul>
+</template>

@@ -1,0 +1,16 @@
+{
+	"localesData": ["en_US","ja_JP", "es_ES", "fr_FR", "it_IT", "de_DE"],
+    "pageLabelValues": {
+      "languageSelectorCancel": "Cancel",
+      "languageSelectorChange": "Select",
+      "languageSelectorModalTitle": "Select a Locale",
+      "languageSelectorModalLabel": "Select a locale to reload the page in your preferred language.",
+		"localeValues": {
+            "LOC_en_US": "English",
+            "LOC_fr_FR": "Francais"
+        }
+    },
+    "pageLabelValuesNoLOC": {
+		"localeValues": {}
+	}
+}

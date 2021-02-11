@@ -1,0 +1,43 @@
+<!--
+ * Created by salesforce.com, inc.
+ * Copyright 2019 salesforce.com, inc. All rights reserved.
+ * Redistribution and use in source or binary forms, with or without
+ * modification is PROHIBITED.
+ -->
+<template>
+    <template if:false={menu.children}>
+        <template if:false={isMyAccountMenu}>
+            <li><a href={linkUrl} class={linkClassList} onclick={handleMenuClick}>{menu.displayName}</a></li>
+        </template>
+
+        <template if:true={isMyAccountMenu}>
+            <div class="my-account-menu-item">
+                <li class="dropdown cc_dropdown" onmouseover={handleMouseOver} onmouseout={handleMouseOut}>
+                    <a href="#0" onclick={toggleMenu} role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle cc_dropdown_toggle">{pageLabelValues.myAccountText}<span class="caret"></span></a>
+                    <ul class="dropdown-menu cc_dropdown-menu">
+                        <li><a class="my-account-menu-item" href={logoutLinkUrl}>{pageLabelValues.logoutText} {userFormattedName}</a></li>
+                    </ul>
+                </li>
+            </div>
+        </template>
+    </template>
+
+    <template if:true={menu.children}>
+        <li class="dropdown cc_dropdown" onmouseover={handleMouseOver} onmouseout={handleMouseOut}>
+            <template if:true={isMyAccountMenu}>
+                <a href="#0" onclick={toggleMenu} role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle cc_dropdown_toggle">{pageLabelValues.myAccountText}<span class="caret"></span></a>
+            </template>
+            <template if:false={isMyAccountMenu}>
+                <a href="#0" onclick={toggleMenu} role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle cc_dropdown_toggle">{menu.displayName}<span class="caret"></span></a>
+            </template>
+            <ul class="dropdown-menu cc_dropdown-menu">
+                <template for:each={menu.children} for:item="menuItem">
+                    <c-b2b_-menu-item key={menuItem.sfid} menu-item={menuItem} config-values={configValues}></c-b2b_-menu-item>
+                </template>
+                <template if:true={isMyAccountMenu}>
+                    <li><a href={logoutLinkUrl}>{pageLabelValues.logoutText} {userFormattedName}</a></li>
+                </template>
+            </ul>
+        </li>
+    </template>
+</template>

@@ -1,0 +1,57 @@
+<!--
+ * Created by salesforce.com, inc.
+ * Copyright 2020 salesforce.com, inc. All rights reserved.
+ * Redistribution and use in source or binary forms, with or without
+ * modification is PROHIBITED.
+ -->
+<template>
+	<header class="cc_lwc_header">
+		<div class="header cc_header">
+			<div class="navbar-inverse cc_navbar-inverse">
+				<div class="container cc_container">
+					<div class="row cc_navbar_row cc_with_ma_dropdown">
+						<small>
+							<div class="col-md-4 col-xs-12 cc_navbar_col_misc">
+								<p class="header-spacer visible-md-* cc_header_spacer"></p>
+								<div class="navbar-header pull-left cc_navbar-header">
+									<span class="misc-function cc_misc_function">
+										<c-b2b_-effective-account-header
+											if:true={displayEAHeader} page-label-values={pageLabelValues}
+										config-values={configValues} is-guest={isGuestUser}></c-b2b_-effective-account-header>
+									</span>
+									<span class="lssec cc_lssec">
+										<c-b2b_-language-selector if:true={configValues.displayLanguageSelector} page-label-values={pageLabelValues}>
+											</c-b2b_-language-selector>
+									</span>
+								</div>
+							</div>
+							<div class="col-md-5 col-xs-12 cc_navbar_col_acct">
+								<p class="header-spacer visible-md-* cc_header_spacer"></p>
+								<div class="navbar-header pull-right cc_navbar-header">
+									<ul class="list-inline navbar-nav cc_list-inline">
+										<li>
+											<c-b2b_-my-account page-label-values={pageLabelValues} is-guest={isGuestUser}></c-b2b_-my-account>
+										</li>
+										<li>
+											<c-b2b_-cart-header page-label-values={pageLabelValues}></c-b2b_-cart-header>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-md-3 col-xs-12 pull-right cc_col_search">
+								<ul class="nav cc_nav">
+									<li>
+										<c-b2b_-search if:true={configValues.displaySearch} page-label-values={pageLabelValues} config-values={configValues}></c-b2b_-search>
+									</li>
+								</ul>
+							</div>
+						</small>
+					</div>
+				</div>
+			</div>
+			<a href="#" class="cc_logo_url"><div class="cc_store_logo_img center-block"></div></a>
+		</div>
+		<c-b2b_-menu-bar page-label-values={pageLabelValues} config-values={configValues} is-guest={isGuestUser}></c-b2b_-menu-bar>
+	</header>
+	<div class="clear"></div>
+</template>

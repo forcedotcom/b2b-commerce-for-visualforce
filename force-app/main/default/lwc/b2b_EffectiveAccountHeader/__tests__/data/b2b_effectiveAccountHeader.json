@@ -1,0 +1,93 @@
+{
+	"data_getPageLabelValues": {
+		"SELECTED_ACCOUNT": "{0} ({1}) - {3}",
+		"SELECT_ACCOUNT": "Please Select an Account",
+		"EFFECTIVE_ACCOUNT_TITLE": "Effective Account Selection",
+		"ACCOUNT_NUMBER": "Account Number",
+		"ADDRESS_FORMAT": "{0}<br>{1}, {2} {3}<br>{4}",
+		"Name": "Name",
+		"Address": "Address"
+	},
+	"data_getEffectiveAccounts": {
+		"success": true,
+		"activeEffectiveAccount": {
+			"accountNumber": "active accountNumber",
+			"billingAddress": {
+				"address1": "active bill address1",
+				"city": "active bill city",
+				"country": "active bill country",
+				"countryCode": "active bill countryCode",
+				"partnerId": "active bill partnerId",
+				"postalCode": "active bill postalCode",
+				"state": "active bill state"
+			},
+			"name": "active name",
+			"sfid": "active sfid",
+			"shippingAddress": {
+				"address1": "active ship address1",
+				"city": "active ship city",
+				"country": "active ship country",
+				"countryCode": "active ship countryCode",
+				"partnerId": "active ship partnerId",
+				"postalCode": "active ship postalCode",
+				"state": "active ship state"
+			}
+		},
+		"effectiveAccountList": [{
+			"accountNumber": "EAList1 accountNumber",
+			"billingAddress": {
+				"address1": "EAList1 bill address1",
+				"city": "EAList1 bill city",
+				"country": "EAList1 bill country",
+				"countryCode": "EAList1 bill countryCode",
+				"partnerId": "EAList1 bill partnerId",
+				"postalCode": "EAList1 bill postalCode",
+				"state": "EAList1 bill state"
+			},
+			"name": "EAList1 name",
+			"sfid": "EAList1 sfid",
+			"shippingAddress": {
+				"address1": "EAList1 ship address1",
+				"city": "EAList1 ship city",
+				"country": "EAList1 ship country",
+				"countryCode": "EAList1 ship countryCode",
+				"partnerId": "EAList1 ship partnerId",
+				"postalCode": "EAList1 ship postalCode",
+				"state": "EAList1 ship state"
+			}
+		},
+		{
+			"accountNumber": "EAList2 accountNumber",
+			"billingAddress": {
+				"address1": "EAList2 bill address1",
+				"city": "EAList2 bill city",
+				"country": "EAList2 bill country",
+				"countryCode": "EAList2 bill countryCode",
+				"partnerId": "EAList2 bill partnerId",
+				"postalCode": "EAList2 bill postalCode",
+				"state": "EAList2 bill state"
+			},
+			"name": "EAList2 name",
+			"sfid": "EAList2 sfid",
+			"shippingAddress": {
+				"address1": "EAList2 ship address1",
+				"city": "EAList2 ship city",
+				"country": "EAList2 ship country",
+				"countryCode": "EAList2 ship countryCode",
+				"partnerId": "EAList2 ship partnerId",
+				"postalCode": "EAList2 ship postalCode",
+				"state": "EAList2 ship state"
+			}
+		}],
+
+	"activeCartEncryptedId": "active activeCartEncryptedId"
+	},
+	"data_getEffectiveAccounts_mergePageLabelData_activeEffectiveAccount": "active name (active accountNumber) - active ship city",
+	"data_getEffectiveAccounts_mergePageLabelData_effectiveAccountList1": "data_getEffectiveAccounts_mergePageLabelData_effectiveAccountList1",
+	"data_getEffectiveAccounts_mergePageLabelData_effectiveAccountList2": "data_getEffectiveAccounts_mergePageLabelData_effectiveAccountList2",
+	"data_getEffectiveAccounts_empty": {
+		"success": true,
+		"effectiveAccountList": []
+	}
+}
+	

@@ -1,0 +1,66 @@
+{
+	"data_dropdownMenu": {
+		"children": [{
+			"openInNewWindow": false,
+			"mType": "None",
+			"parentMenuItem": "a0f3h000000p5DpAAI",
+			"sfid": "a0f3h000000p5DuAAI",
+			"sequence": 2,
+			"displayName": "child2"
+		}],
+		"openInNewWindow": false,
+		"mType": "None",
+		"menu": "a0g3h00000058hwAAA",
+		"sfid": "a0f3h000000p5DpAAI",
+		"sequence": 1,
+		"displayName": "child1"
+	},
+	"data_link_InternalURL": {
+		"openInNewWindow": false,
+		"linkURL": "CCPage?pagekey=contactus",
+		"mType": "URL",
+		"sfid": "a0g3h00000058hvAAA",
+		"menuId": "3",
+		"sequence": 300,
+		"showInMyAccountMenu": false,
+		"displayName": "Internal URL"
+	},
+	"data_link_ExternalURL": {
+		"openInNewWindow": true,
+		"linkURL": "https://www.salesforce.com/",
+		"mType": "URL",
+		"menu": "a0g3h0000006OWGAA2",
+		"sfid": "a0f3h0000005HTgAAM",
+		"sequence": 100,
+		"displayName": "External URL"
+	},
+	"data_link_Category": {
+		"openInNewWindow": false,
+		"linkURL": "a0K3h0000001qaZEAQ",
+		"mType": "Category",
+		"menuId": "allproducts",
+		"menu": "a0g3h00000058hwAAA",
+		"sfid": "a0f3h0000004jfIAAQ",
+		"sequence": 100,
+		"category": "a0K3h0000001qaZEAQ",
+		"displayName": "ALL PRODUCTS",
+		"friendlyUrl": "friendlyUrl_Category",
+		"mockDetermineLinkUrl": "https://ay-033020-dev-developer-edition.na111.force.com/DefaultStore/ProductList?categoryId=a0K3h0000001qaZEAQ&cclcl=en_US"
+	},
+	"data_link_Product": {
+		"openInNewWindow": true,
+		"linkURL": "ID-CAP-II",
+		"mType": "Product",
+		"productR": {
+			"SKU": "ID-CAP-II",
+			"sfid": "a1F3h0000000HGzEAM"
+		},
+		"menu": "a0g3h0000006OWGAA2",
+		"sfid": "a0f3h0000005JRVAA2",
+		"sequence": 300,
+		"product": "a1F3h0000000HGzEAM",
+		"displayName": "productlink",
+		"friendlyUrl": "friendlyUrl_Product",
+		"mockDetermineLinkUrl": "https://ay-033020-dev-developer-edition.na111.force.com/DefaultStore/ProductDetails?sku=ID-CAP-II&cclcl=en_US"
+	}
+}
