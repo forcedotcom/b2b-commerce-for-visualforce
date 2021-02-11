@@ -2,13 +2,16 @@
 
 Further integrate your fully featured Visualforce storefront with an Experience Builder site, and deliver a smooth transitional experience for your buyers across your solution.
 
-This guide steps through deploying the Header components using SFDX.
+This guide steps through deploying the Header components using Salesforce CLI.
+
+See https://developer.salesforce.com/tools/sfdxcli for information regarding the Salesforce CLI.
 
 ## Prerequisites
 
 * An org with B2B Commerce Winter ‘21 release (Version 4.13) installed
 * A community using a Builder template
-* SFDX set up
+* Salesforce CLI set up
+  * https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm
 
 ## Get the Code
 
