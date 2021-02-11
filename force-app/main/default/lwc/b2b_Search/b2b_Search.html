@@ -1,0 +1,52 @@
+<!--
+/**
+ * Created by salesforce.com, inc.
+ * Copyright 2020 salesforce.com, inc. All rights reserved.
+ * Redistribution and use in source or binary forms, with or without
+ * modification is PROHIBITED.
+ */
+ -->
+
+<template>
+	<div class="search_form cc_search_form" >
+		<div class="navbar-form cc_navbar_form" role="search">
+			<div class="input-group cc_input-group">
+				<input class="form-control search_input cc_search_input ui-autocomplete-input"
+					   type="text"
+					   oninput={handleSearchOnInputChange}
+					   onkeydown={handleSearchOnKeyDown}
+					   onblur={handleSearchOnBlur}
+					   autocomplete="off"
+					   placeholder={pageLabelValues.ProductSearch}>
+
+				<span class="input-group-btn">
+					<button id="doSearch" class="btn btn-default search_button" type="Submit" onclick={handleSearch}>
+						<i class="fa fa-search" aria-hidden="true"></i>
+					</button>
+				</span>
+			</div>
+		</div>
+		<div class="cc_autoCompleteForm">
+			<template if:true={autocompleteArray}>
+				<ul tabindex="0" class="ui-menu ui-widget ui-widget-content ui-front">
+					<template if:true={autocompleteArray} for:each={autocompleteArray} for:item="autoCompleteOption">
+						<li key={autoCompleteOption.key} class="ui-menu-item">
+							<div class="ui-menu-item-wrapper"
+								 tabindex="-1"
+								 onclick={handleAutocompleteOnClick}
+								 onmouseover={handleAutocompleteOnMouseOver}
+								 data-id={autoCompleteOption.key}>{autoCompleteOption.value}</div>
+						</li>
+					</template>
+				</ul>
+			</template>
+		</div>
+		<div class="productSearchTooltip">
+			<template if:true={productSearchTooltipDisplay}>
+				<div class="arrow"></div>
+				<h3 class="popover-title"></h3>
+				<div class="popover-content">{pageLabelValues.productSearchTooltip}</div>
+			</template>
+		</div>
+	</div>
+</template>

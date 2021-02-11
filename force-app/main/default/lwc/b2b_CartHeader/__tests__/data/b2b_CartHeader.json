@@ -1,0 +1,44 @@
+{
+	"data_error":{
+	},
+	"data_getPageLabelValues": {
+		"Component_SiteHeader_MyCart": "My Cart",
+		"Component_MiniCart_Item": "item",
+		"Component_MiniCart_Items": "Items"
+	},
+	"data_getCartHeader_0Items": {
+		"cartCount": 0,
+		"cartTotal": "0.00",
+		"encryptedId": "0Items_EncryptedID",
+		"success": true,
+		"ccCallContext": {
+			"userLocale": "en_US",
+			"userIsoCode": "USD"
+		},
+		"formattedPrice": "$0.00",
+		"displayString": "My Cart: 0 Items $0.00"
+	},
+	"data_getCartHeader_2Items": {
+		"cartCount": 2,
+		"cartTotal": "1234567.89",
+		"encryptedId": "2Items_EncryptedID",
+		"success": true,
+		"ccCallContext": {
+			"userLocale": "en_US",
+			"userIsoCode": "USD"
+		},
+		"formattedPrice": "$1,234,567.89",
+		"displayString": "My Cart: 2 Items $1,234,567.89"
+	},
+	"data_getCartHeader_JPY": {
+		"cartCount": 1,
+		"cartTotal": "550000.00",
+		"encryptedId": "JPY_EncryptedID",
+		"success": true,
+		"ccCallContext": {
+			"userLocale": "ja_JP",
+			"userIsoCode": "JPY"
+		},
+		"formattedPrice": "￥550,000"
+	}
+}

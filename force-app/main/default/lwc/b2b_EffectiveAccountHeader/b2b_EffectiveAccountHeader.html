@@ -1,0 +1,14 @@
+<template>
+	<template if:true={displayEAHeader}>
+		<ul class="list-inline navbar-nav cc_navbar-nav">
+			<li class="effAccount cc_eff_account" data-toggle="modal" data-target="#effAccounts">
+				<a href="#" onclick={handleShowModal} onblur={handleModalOnBlur}>
+					{effectiveAccountLinkText}
+					<span class="launchSel cc_launch_sel" aria-hidden="true"></span>
+				</a>
+			</li>
+		</ul>
+		<c-b2b_-effective-account-modal page-label-values={pageLabelValues} effectiveaccountlist={effectiveAccountList}>
+		</c-b2b_-effective-account-modal>
+	</template>
+</template>

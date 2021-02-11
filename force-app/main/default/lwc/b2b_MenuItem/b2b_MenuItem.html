@@ -1,0 +1,22 @@
+<!--
+ * Created by salesforce.com, inc.
+ * Copyright 2020 salesforce.com, inc. All rights reserved.
+ * Redistribution and use in source or binary forms, with or without
+ * modification is PROHIBITED.
+ -->
+ <template>
+    <template if:false={menuItem.children}>
+        <li><a href={linkUrl} class={linkClassList} onclick={handleMenuItemClick}>{menuItem.displayName}</a></li>
+    </template>
+
+    <template if:true={menuItem.children}>
+        <li class="menu-item dropdown dropdown-submenu">
+            <a class="dropdown-toggle" onclick={toggleMenu} onblur={handleBlur} onfocusout={handleFocusOut}>{menuItem.displayName}</a>
+            <ul class="dropdown-menu">
+                <template for:each={menuItem.children} for:item="childMenuItem">
+                    <c-b2b_-menu-item key={childMenuItem.sfid} menu-item={childMenuItem} config-values={configValues}></c-b2b_-menu-item>
+                </template>
+            </ul>
+        </li>
+    </template>
+</template>

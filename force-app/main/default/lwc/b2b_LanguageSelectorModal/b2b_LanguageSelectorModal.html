@@ -1,0 +1,30 @@
+<template>
+    <!-- Modal/Popup Box LWC starts here -->
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container modal-sm">
+            <div class="modal-content cc_modal_content">
+                <div class="modal-header cc_modal_header">
+                    <button type="button" class="close cc_close" data-dismiss="modal" aria-label="Close" onclick={toggleLangSelectModalHandler}><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title cc_modal_title" id="myModalLabel">{pageLabelValues.languageSelectorModalTitle}</h4>
+                </div>
+                <div class="modal-body cc_modal_body">
+                    <p>{pageLabelValues.languageSelectorModalLabel}</p>
+                    <table class="localeModalTable table table-hover table-bordered cc_locale_modal_table" id="available_locales">
+                        <tbody>
+                        <template for:each={languageLocales} for:item="locale">
+                            <tr class="cc_tr_locale" key={locale.id} data-id={locale.id} onclick={selectLanguage}>
+                                <td class="cc_td_locale">{locale.displayVal}</td>
+                            </tr>
+                        </template>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer cc_modal_footer">
+                <input type="button" class="btn btn-default btn-sm closeModal cc_close_modal" data-dismiss="modal" data-id="" value={pageLabelValues.languageSelectorCancel} onclick={toggleLangSelectModalHandler}></input>
+                <input type="button" class="btn btn-default btn-sm setLocale cc_set_locale" data-id="" data-mode="" value={pageLabelValues.languageSelectorChange} onclick={setLanguage}></input>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</template>
