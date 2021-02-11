@@ -1,0 +1,21 @@
+<!--
+	/**
+	* Created by salesforce.com, inc.
+	* Copyright 2020 salesforce.com, inc. All rights reserved.
+	* Redistribution and use in source or binary forms, with or without
+	* modification is PROHIBITED.
+	*/
+-->
+<template>
+	<li class="cc_my_chead">
+		<a href="#0" class="chead cartHeaderLink" onclick={navigateToCart}>
+			<template if:true={isCartRepricing}>
+				<i class="fa fa-refresh cc_icon_refresh" aria-hidden="true"></i>
+			</template>
+			<template if:false={isCartRepricing}>
+				<i class="fa fa-shopping-cart cc_icon_cart" aria-hidden="true"></i>
+			</template>
+			<span class="cc_header_mycart">&nbsp;{cartDisplayString}</span>
+		</a>
+	</li>
+</template>

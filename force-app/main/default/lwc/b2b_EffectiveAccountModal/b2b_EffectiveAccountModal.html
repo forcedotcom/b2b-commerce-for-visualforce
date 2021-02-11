@@ -1,0 +1,44 @@
+<template>
+	<template if:true={showModal}>
+		<div class="slds-backdrop slds-backdrop_open"></div>
+		<div class="modal fade cc_modal cc_effective_accounts_modal cc_lwc_modal in" id="effAccounts" tabindex="-1" role="dialog"
+		aria-labelledby="effAccountsLabel">
+			<div class="modal-dialog" role="document" onmousedown={handleShowModal}>
+					<div class="modal-content cc_modal_content">
+						<div class="modal-header cc_modal_header">
+							<button type="button" class="close cc_close" data-dismiss="modal" aria-label="Close"
+							onclick={hide}><span
+							aria-hidden="true">×</span></button>
+							<h4 class="modal-title cc_modal_title" id="effAccountsLabel">{pageLabelValues.EffectiveAccountTitle}</h4>
+						</div>
+						<div class="modal-body cc_modal_body">
+							<div class="table-responsive">
+								<table class="table table-hover cc_table">
+									<thead class="cc_thead">
+										<tr class="cc_tr">
+											<th class="cc_th_name">{pageLabelValues.Name}</th>
+											<th class="cc_th_account_number">{pageLabelValues.AccountNumber}</th>
+											<th class="cc_th_address">{pageLabelValues.Address}</th>
+											<th class="cc_th_picked"></th>
+										</tr>
+									</thead>
+									<tbody class="cc_tbody">
+										<tr for:each={effectiveaccountlist} for:item="effectiveaccount" key={effectiveaccount.sfid}
+											class="cc_tr_values">
+											<td class="cc_td_name">{effectiveaccount.name}</td>
+											<td class="cc_td_account_number">{effectiveaccount.accountNumber}</td>
+											<td class="cc_td_address">{effectiveaccount.eaModalAddress}</td>
+											<td><a href="#" onclick={handleEAClick} data-id={effectiveaccount.sfid}><i class="pickSel pickAccount cc_pick_account fa fa-chevron-right"
+														data-id={effectiveaccount.sfid} aria-hidden="true"></i><span
+															class="sr-only">{pageLabelValues.SelectAccount}</span></a></td>
+
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</template>
+	</template>

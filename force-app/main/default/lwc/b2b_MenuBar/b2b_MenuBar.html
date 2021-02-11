@@ -1,0 +1,42 @@
+<!--
+ * Created by salesforce.com, inc.
+ * Copyright 2019 salesforce.com, inc. All rights reserved.
+ * Redistribution and use in source or binary forms, with or without
+ * modification is PROHIBITED.
+ -->
+<template>
+    <div class="menu_container cc_menu_container">
+        <div id="cc_secnav">
+            <nav class="navbar navbar-default navbar-static-top cc_navbar">
+                <div class="container cc_container">
+                    <div class="navbar-header cc_navbar_header">
+                        <button type="button" class="navbar-toggle collapsed cc_navbar_toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" onclick={handleNavbarToggle}>
+                            <span class="sr-only">{pageLabelValues.menuToggleNavigationText}</span>
+                            <span class="icon-bar cc_icon-bar"></span>
+                            <span class="icon-bar cc_icon-bar"></span>
+                            <span class="icon-bar cc_icon-bar"></span>
+                        </button>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse cc_navbar_collapse">
+                        <ul class="nav navbar-nav cc_navbar-nav">
+                            <li>
+                                <a href={homePageUrl} onclick={gotoHomePage} class="cc_phone_logo gp_home">
+                                    <i class="fa fa-home" aria-hidden="true"></i>
+                                </a>
+                                <span class="sr-only">{pageLabelValues.menuHomeIconText}</span>
+                            </li>
+                            <template for:each={menus} for:item="menu">
+                                <c-b2b_-menu class="cc_menu" key={menu.sfid} menu={menu} page-label-values={pageLabelValues} config-values={configValues}></c-b2b_-menu>
+                            </template>
+                            <template if:false={isGuest}>
+                                <div class="cc_menu_my_account">
+                                    <c-b2b_-menu class="cc_menu" is-my-account-menu=true menu={myAccountMenu} page-label-values={pageLabelValues} config-values={configValues} storefront={storefront}></c-b2b_-menu>
+                                </div>
+                            </template>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</template>

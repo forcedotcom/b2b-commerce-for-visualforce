@@ -1,0 +1,66 @@
+{
+	"data_getPageLabelValues": {
+		"SelectedAccount": "{0} ({1}) - {3}",
+		"SelectAccount": "Please Select an Account",
+		"EffectiveAccountTitle": "Effective Account Selection",
+		"AccountNumber": "Account Number",
+		"AddressFormat": "{0}<br>{1}, {2} {3}<br>{4}",
+		"Name": "Name",
+		"Address": "Address"
+	},
+	"data_effectiveAccountList": [{
+		"accountNumber": "EAList1 accountNumber",
+		"billingAddress": {
+			"address1": "EAList1 bill address1",
+			"city": "EAList1 bill city",
+			"country": "EAList1 bill country",
+			"countryCode": "EAList1 bill countryCode",
+			"partnerId": "EAList1 bill partnerId",
+			"postalCode": "EAList1 bill postalCode",
+			"state": "EAList1 bill state"
+			},
+		"eaModalAddress": "EAList1 eaModalAddress",
+		"name": "EAList1 name",
+		"sfid": "EAList1 sfid",
+		"shippingAddress": {
+			"address1": "EAList1 ship address1",
+			"city": "EAList1 ship city",
+			"country": "EAList1 ship country",
+			"countryCode": "EAList1 ship countryCode",
+			"partnerId": "EAList1 ship partnerId",
+			"postalCode": "EAList1 ship postalCode",
+			"state": "EAList1 ship state"
+			}
+		},
+		{
+		"accountNumber": "EAList2 accountNumber",
+		"billingAddress": {
+			"address1": "EAList2 bill address1",
+			"city": "EAList2 bill city",
+			"country": "EAList2 bill country",
+			"countryCode": "EAList2 bill countryCode",
+			"partnerId": "EAList2 bill partnerId",
+			"postalCode": "EAList2 bill postalCode",
+			"state": "EAList2 bill state"
+			},
+		"eaModalAddress": "EAList2 eaModalAddress",
+		"name": "EAList2 name",
+		"sfid": "EAList2 sfid",
+		"shippingAddress": {
+			"address1": "EAList2 ship address1",
+			"city": "EAList2 ship city",
+			"country": "EAList2 ship country",
+			"countryCode": "EAList2 ship countryCode",
+			"partnerId": "EAList2 ship partnerId",
+			"postalCode": "EAList2 ship postalCode",
+			"state": "EAList2 ship state"
+		}
+	}],
+	"data_setEffectiveAccount" : {
+		"success": true,
+		"activeCartEncryptedId": "data_setEffectiveAccount-activeCartEncryptedId"
+	},
+	"data_buildUrlResultWithParam": "/storefrontName/s/?language=en_US",
+	"data_buildUrlResultWithoutParam": "/storefrontName/s/",
+	"data_storefrontName": "storefrontName"
+}

@@ -1,0 +1,31 @@
+{
+  "success": true,
+  "myAccountMenu": [
+    {
+      "children": [
+        {
+          "openInNewWindow": false,
+          "linkURL": "/DefaultStore/MyAccount?viewState=myCarts",
+          "mType": "URL",
+          "menu": "a0g4R00000a8Hc0QAE",
+          "sfid": "a0f4R00000J47wmQAB",
+          "displayName": "My Carts"
+        },
+        {
+          "openInNewWindow": false,
+          "linkURL": "/DefaultStore/MyAccount?viewState=myOrders",
+          "mType": "URL",
+          "menu": "a0g4R00000a8Hc0QAE",
+          "sfid": "a0f4R00000J47wOQAR",
+          "displayName": "My Orders"
+        }
+      ],
+      "openInNewWindow": false,
+      "mType": "None",
+      "sfid": "a0g4R00000a8Hc0QAE",
+      "sequence": 500,
+      "showInMyAccountMenu": true,
+      "displayName": "LWC My Account"
+    }
+  ]
+}
