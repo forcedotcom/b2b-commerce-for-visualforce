@@ -1,4 +1,11 @@
-import {api, LightningElement, wire} from 'lwc';
+/*
+ * Copyright (c) 2021, salesforce.com, inc.
+ * All rights reserved.
+ * SPDX-License-Identifier: BSD-3-Clause
+ * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+ */
+
+ import {api, LightningElement, wire} from 'lwc';
 import setEffectiveAccount from '@salesforce/apex/ccrz.b2b_lwc_EffectiveAccountController.setEffectiveAccount';
 import getStorefront from '@salesforce/apex/ccrz.b2b_lwc_CommonServices.getStorefrontName';
 import { buildUrl, gotoURL, initContext, setCookieWithPath } from 'c/b2b_CommonServices';
