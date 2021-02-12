@@ -10,6 +10,8 @@ import { loadStyle } from 'lightning/platformResourceLoader';
 import { getPageLabelValues, getConfigValues } from 'c/b2b_CommonServices';
 import isGuest from '@salesforce/user/isGuest';
 import ccrzJavascriptResource from '@salesforce/resourceUrl/ccrz__CCRZ_JS';
+
+// Change ccrz__CC_Theme_Capricorn to the storefront theme static resource
 import themeResource from '@salesforce/resourceUrl/ccrz__CC_Theme_Capricorn';
 
 

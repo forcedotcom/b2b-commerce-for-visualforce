@@ -61,6 +61,24 @@ sfdx force:org:open
 * In Builder, drag and drop the component **B2B Commerce Header (Unmanaged)** to the header section of the page.
 * Click **Publish**.
 
+The Capricorn theme uses google fonts. To continue using google fonts and avoid CSP warnings, add the following CSP entries:
+* From Setup, click **CSP Trusted Sites**
+* Click **New Trusted Site**
+* Set the following
+  * **Trusted Site Name:** Google_Fonts_CSS
+  * **Trusted Site URL:** https://fonts.googleapis.com
+  * **Active:** checked
+  * **Context:** Communities
+  * Under **CSP Directives**, check **Allow site for style-src**
+
+* Click **New Trusted Site**
+* Set the following
+  * **Trusted Site Name:** Google_Static_Fonts
+  * **Trusted Site URL:** https://fonts.gstatic.com
+  * **Active:** checked
+  * **Context:** Communities
+  * Under **CSP Directives**, check **Allow site for font-src**
+
 ## Making Changes
 
 You can now make custom changes to the components. To do this, modify the components in the force-app/main/default/lwc directory, then push to the org using your IDE or using the SFDX force:source:deploy command.
