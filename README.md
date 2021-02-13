@@ -78,6 +78,22 @@ The default component is styled for the Capricorn Coffee demo theme, and uses Go
   * **Context:** Experience Builder Sites
   * Under **CSP Directives**, enable **Allow site for font-src**.
 
+## Enable Users to View Components
+
+The B2B Commerce Header component makes calls to several Apex Classes in the B2B Commerce for Visualforce managed package. For users of the community to properly view the component, they need access to these Apex Classes. To provide this access, update applicable commmunity users' profiles and/or guest user permission sets with access to the following Apex Classes:
+* ccrz.b2b_lwc_CartHeaderController
+* ccrz.b2b_lwc_CommonServices
+* ccrz.b2b_lwc_EffectiveAccountController
+* ccrz.b2b_lwc_FeaturedProductsController
+* ccrz.b2b_lwc_LanguageController
+* ccrz.b2b_lwc_MenuController
+* ccrz.b2b_lwc_MyAccountController
+* ccrz.b2b_lwc_ReOrderController
+* ccrz.b2b_lwc_SearchController
+* ccrz.cc_bean_EffectiveAccount
+* ccrz.cc_bean_MenuItem
+* ccrz.cc_bean_MockContactAddress
+
 ## Customize the Components
 
 You can now customize the components for your storefront's brand identity. First, modify the components in the `force-app/main/default/lwc` directory, then push to the org using your IDE or using the `force:source:deploy` SFDX command.
