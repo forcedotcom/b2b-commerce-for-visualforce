@@ -1,6 +1,6 @@
-# CloudCraze GA4 Starter Kit
+# Google Analytics 4 and Salesforce B2B Commerce for Visualforce
 
-## Google Announcement
+Google [announced that Google Analytics 4 is replacing Universal Analytics](https://support.google.com/analytics/answer/10759417):
 
 >Google Analytics 4 is replacing Universal Analytics. On July 1, 2023 all standard Universal Analytics properties will stop processing new hits. 360 Universal Analytics properties will stop processing new hits on July 1, 2024.
 ...
@@ -8,13 +8,11 @@ The earlier you migrate, the more historical data and insights you will have in 
 ...
 analytics.js is a legacy library. If you are starting a new implementation, we recommend you use the gtag.js library. For existing implementations, learn how to [migrate from analytics.js to gtag.js](https://developers.google.com/analytics/devguides/migration/ua/analyticsjs-to-gtagjs).
 
+This change affects B2B Commerce for Visualforce storefronts that currently enable Google Analytics for tracking activity, which relies on Universal Analytics.
 
+## Current Google Analytics Implementation in B2B Commerce for Visualforce
 
-## How GA is implemented in CCRZ
-
-CCRZ does not track Google Analytics by default. This must be enabled in the B2B Commerce Admin. If an admin adds the configuration setting for Google Analytics Tracking ID ([instructions here](https://help.salesforce.com/s/articleView?id=sf.b2b_commerce_google_analytics_start.htm&type=5)), a snippet of code will execute on pages matching the Page attribute for the config setting—typically this is set to “all”.
-
-**src/components/HeadIncludes.component**
+B2B Commerce for Visualforce doesn't track Google Analytics by default, but admins can connect a Google Analytics property to their storefront by [specifying a Google Analytics Tracking ID in storefront configuration settings](https://help.salesforce.com/s/articleView?id=sf.b2b_commerce_google_analytics_start.htm&type=5). The following code snippet--defined in `src/components/HeadIncludes.component` in the B2B Commerce for Visualforce managed package--executes on storefront pages that the configuration setting applies to (typically, all pages).
 
 ```
 <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(gaTrackingId))}">
@@ -41,7 +39,7 @@ CCRZ does not track Google Analytics by default. This must be enabled in the B2B
 </apex:outputPanel>
 ```
 
-**staticresources/CC_Javascript_Framework.resource/js/analytics.js** defines the following functions:
+The `staticresources/CC_Javascript_Framework.resource/js/analytics.js` file in the B2B Commerce for Visualforce managed package also defines the following functions:
 
 ```
 CCRZ.ga.sendPageview
@@ -65,7 +63,7 @@ CCRZ.ga.handleSearch2
 CCRZ.ga.handlePromotions
 ```
 
-**analytics.js** also sets up a few pubsub listeners:
+The `analytics.js` file also defines some `CCRZ.PubSub` event listeners:
 
 ```
 CCRZ.pubSub.**on**('pageMessage', CCRZ.ga.handlePageMessage, this);
@@ -73,9 +71,7 @@ CCRZ.pubSub.**on**('model:collectionsProductList:fetch', CCRZ.ga.handleSearch2);
 CCRZ.pubSub.**on**('view:PromoDisp:rendered', CCRZ.ga.handlePromotions);
 ```
 
-We have over 50 places throughout the pages that call CCRZ.ga functions as events and transactions take place.
-
-Snippet from **cc_CheckoutShippingRD.component**
+There are more than 50 instances in default storefront pages that call `CCRZ.ga` functions. For example, this snippet from `cc_CheckoutShippingRD.component`:
 
 ```
 if (CCRZ.ga) {
@@ -86,104 +82,96 @@ if (CCRZ.ga) {
 }
 ```
 
-## How to Switch
+## Switch Your Storefront to Google Analytics 4
 
-Moving from GA to GA4 in CloudCraze involves the following high-level steps:
+To update your current Google Analytics implementation on a storefront from Universal Analytics to Google Analytics 4, complete these high-level steps, which are described in more detail below.
 
-* Set up Google Analytics 4
-* Update and deploy code:
-    * Update and deploy the GA4UserInterface.cls apex class that extends ccrz.cc_hk_UserInterface.
-    * Update and deploy the GA4 static resource containing the CCRZ.ga analytics function overrides.
-* Update configuration settings:
-    * Add new configuration setting for GA4 Measurement ID.
-    * Remove Google Analytics Tracking ID configuration setting.
-    * TODO: add the new user interface class override
-    * Rebuild configuration cache.
-* Verify it’s working
+1. Set up Google Analytics 4.
+2. Update and deploy code.
+    a. Update and deploy the `GA4UserInterface.cls` custom Apex class that extends the `ccrz.cc_hk_UserInterface` extension point class.
+    b. Update and deploy the Google Analytics 4 static resource that contains the `CCRZ.ga` JavaScript function overrides.
+3. Update your storefront settings.
+    a. Remove the current Google Analytics Tracking ID configuration setting.
+    b. Add the new GA4 Measurement ID configuration setting.
+    c. Specify the custom Apex class as the User Interface Extension API Class in your storefront settings.
+    d. Build and activate a new configuration cache.
+4. Verify that Google Analytics 4 is working on your storefront.
 
 ### Set Up Google Analytics 4
 
-Google had documented how to set up GA4 along side GA in this guide: [[GA4] Add a Google Analytics 4 property (to a site that already has Analytics)](https://support.google.com/analytics/answer/9744165?sjid=13091597078223838629-NA#zippy=%2Cin-this-article). Some notable mentions from this guide:
+Complete the steps in the Google Analytics Help article, [[GA4] Add a Google Analytics 4 property (to a site that already has Analytics)](https://support.google.com/analytics/answer/9744165?sjid=13091597078223838629-NA#zippy=%2Cin-this-article).
 
-* This activates enhanced measurement by default in the new GA4 property. Enhanced measurement automatically tracks various common events. This may or may not be desirable for your situation. See [[GA4] Enhanced event measurement](https://support.google.com/analytics/answer/9216061?sjid=13091597078223838629-NA) for more info and steps to disable if desired.
+NOTE: Completing these steps activates enhanced measurement in the new Google Analytics 4 property by default. Enhanced measurement automatically tracks various common events. If you prefer not to track these events, see [[GA4] Enhanced event measurement](https://support.google.com/analytics/answer/9216061?sjid=13091597078223838629-NA) for information about disabling this behavior.
 
 ### Update and Deploy Code
 
-**Extend cc_hk_UserInterface**
+**Extend `ccrz.cc_hk_UserInterface`**
 
-* Create a new Apex Class that extends ccrz.cc_hk_UserInterface.v004. Note v004 is the most recent version of the CloudCraze user interface.
-* The provided example GA4UserInterface.cls inserts the necessary GA4 content in the <head> tag before the CloudCraze standard includes.
-    * Source code can be found in the ccrz-ga4-starter-kit git repository.
-    * https://git.soma.salesforce.com/cloudcraze/ccrz-ga4-starter-kit/blob/main/force-app/main/default/classes/GA4UserInterface.cls
+1. Create an Apex class that extends the `ccrz.cc_hk_UserInterface.v004` extension point class. The `v004` inner class defines the most recent default libraries and logic for evaluating configuration setting values.
+2. The provided example class, `GA4UserInterface.cls`, inserts the necessary GA4 content in the `<head>` tag before the standard included libraries.
 
-For more information on extending ccrz.cc_hk_UserInterface, see the [B2B Commerce for Visualforce Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.noversion.b2b_commerce_dev_guide.meta/b2b_commerce_dev_guide/ccrz_cc_hk_UserInterface.htm).
+    Find the example class in the `ccrz-ga4-starter-kit` folder in this repository: https://github.com/forcedotcom/b2b-commerce-for-visualforce/blob/main/ccrz-ga4-starter-kit/force-app/main/default/classes/GA4UserInterface.cls
 
-**Override the CCRZ analytics javascript functions**
+For more information on extending `ccrz.cc_hk_UserInterface`, see the [B2B Commerce for Visualforce Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.noversion.b2b_commerce_dev_guide.meta/b2b_commerce_dev_guide/ccrz_cc_hk_UserInterface.htm).
 
-The provided javascript file ga4analytics.js contains an implementation of CCRZ.ga. This handles initializing the GA4 config and overrides the OOTB CCRZ.ga functions for sending data to GA4.
+**Override the Default `CCRZ.ga` Javascript Functions**
 
-* Source code can be found in the ccrz-ga4-starter-kit git repository.
-* https://git.soma.salesforce.com/cloudcraze/ccrz-ga4-starter-kit/blob/main/force-app/main/default/staticresources/GA4Analytics/ga4analytics.js
+The provided `ga4analytics.js` file contains an implementation of `CCRZ.ga` that initializes the GA4 configuration and overrides the default `CCRZ.ga` functions for sending data to GA4.
 
-
-**Update Store to use G4UserInterface**
-
-* Navigate to the CC Admin tab.
-* Select the store in the store dropdown to go to store settings.
-* Click Themes on the left.
-* Scroll to the bottom and set User Interface Extension API Class to `c.GA4UserInterface`
-* Click Save
-    * *Note: this change is effective immediately.*
+Find this file in the `ccrz-ga4-starter-kit` folder in this repository: https://github.com/forcedotcom/b2b-commerce-for-visualforce/blob/main/ccrz-ga4-starter-kit/force-app/main/default/staticresources/GA4Analytics/ga4analytics.js
 
 
-TODO: determine best way to distribute the code
+**Update Your Storefront to Reference `G4UserInterface.cls`**
 
+1. On the CC Admin tab in your org, select your storefront.
+2. In the Storefront Settings menu, scroll to the Appearance section, and select *Themes*.
+3. Scroll to the User Interface Extension Settings section, and for User Interface Extension API Class, enter `c.GA4UserInterface`.
+4. Save your changes.
 
-### Update Configuration Settings
+    Note: This change is effective immediately.
 
-The CCRZ component HeadIncludes adds the GA includes and init javascript. To prevent this from executing, remove the configuration setting Google Analytics Tracking ID.
+### Update Storefront Configuration Settings
 
-* Navigate to the CC Admin tab.
-* Select the store in the store dropdown to go to store settings.
-* Click Configuration Settings on the left.
-* Select Module Analytics.
-* Ensure Google Analytics Tracking ID is not set. If it is set, click Delete in the action column to remove it.
+Remove the current Google Analytics Tracking ID configuration setting to prevent the `HeadIncludes` component from executing the default Google Analytics behavior.
 
-Add the new GA4 Measurement ID configuration setting:
+1. On the CC Admin tab in your org, select your storefront.
+2. In the Storefront Settings menu, select *Configuration Settings*.
+3. From the Module picklist, select *Analytics*.
+4. If the Google Analytics Tracking ID configuration is set, click *Delete* in the Action column.
 
-* Navigate to the CC Admin tab.
-* Click Configuration Modules in the GLOBAL SETTINGS on the left.
-* Click the Analytics module.
-* Click New next to Configuration Metadata.
-    * Name: GA4 Measurement ID
-    * API Name: ga4id
-    * Description: Google Analytics 4 measurement ID
-    * Externally Safe: leave unchecked
-* Click Save
-* Select the store in the store dropdown to go to store settings.
-* Click Configuration Settings on the left.
-* Click New
-    * Module: Analytics
-    * Configuration: GA4 Measurement ID
-    * Page: all
-    * Set Value to the MEASUREMENT ID from GA4 Data Stream settings
-* Click Save
+Add the new GA4 Measurement ID configuration metadata and set its value on your storefront.
 
-#### Verify It’s Working
+1. On the CC Admin tab in your org, select *Global Settings* from the storefront picklist.
+2. Select *Configuration Modules* from the Global Settings menu.
+3. From the Configuration Modules list, select *Analytics*.
+4. Click *New* and enter these details in the Configuration Metadata window.
+    a. For Name, enter `GA4 Measurement ID`.
+    b. For API Name, enter `ga4id`.
+    c. For Description, enter `Google Analytics 4 measurement ID`.
+    d. For Externally Safe, leave unselected (a value of `false`).
+5. Save your changes.
+6. Select your storefront from the storefront picklist.
+7. In the Storefront Settings menu, select *Configuration Settings*.
+8. Click *New* and enter these values in the New Page Setting window.
+    a. For Module, enter `Analytics`.
+    b. For Configuration, enter `GA4 Measurement ID`.
+    c. For Page, enter `all`.
+    d. For Value, enter the MEASUREMENT ID from your GA4 Data Stream settings.
+9. Save your changes.
+10. Build and activate a new configuration cache.
 
-Bring up your store and verify you see tracking happening in GA4.
+#### Verify That Google Analytics 4 is Working on Your Storefront
 
-Google debugging tools:
+Visit your storefront and verify that Google Analytics 4 is tracking your activity.
 
-* GA4 provides a way to [[GA4] Monitor events in DebugView](https://support.google.com/analytics/answer/7201382?hl=en&utm_id=ad).
-* Google also provides a [Google Analytics Debugger](https://chrome.google.com/webstore/detail/google-analytics-debugger/jnkmfdileelhofjcijamephohjechhna) chrome plugin that allows viewing analytics events in the developer console output.
+Google provides these debugging tools to help you.
 
-## Additional Info
+* [[GA4] Monitor events in DebugView](https://support.google.com/analytics/answer/7201382?hl=en&utm_id=ad)
+* [Google Analytics Debugger plugin for Google Chrome to view analytics events in the developer console output](https://chrome.google.com/webstore/detail/google-analytics-debugger/jnkmfdileelhofjcijamephohjechhna)
 
-GA4 has a set of recommended events to track for commerce sites. These guides describe the recommended events and how to track them with GA4:
+## Additional Resources
+
+GA4 defines a set of recommended events to track on commerce sites. These guides describe the recommended events and how to track them with GA4.
 
 * [[GA4] Recommended events](https://support.google.com/analytics/answer/9267735?hl=en&ref_topic=13367566)
 * [Measure ecommerce](https://developers.google.com/analytics/devguides/collection/ga4/ecommerce?client_type=gtag)
-
-
-
